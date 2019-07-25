@@ -1,0 +1,6 @@
+# config file
+
+# config for PrismaServer
+[PrismaServer]
+    address = "http://202.206.168.131:4466"
+    secret = ""
