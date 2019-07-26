@@ -14,8 +14,13 @@ func say(s string) {
 }
 
 // ch := make (chan int)
+/*
+ 注意：默认情况下，通道是不带缓冲区的。发送端发送数据，同时必须在接收端相应的接收数据。
+
+以下实例通过两个 goroutine 来计算数字之和，在 goroutine 完成计算后，它会计算两个结果的和：
+*/
 func sum(s []int, c chan int) {
-	sum := 100
+	sum := 0
 	for _, v := range s {
 		sum += v
 	}
@@ -38,10 +43,12 @@ func main() {
 
 	注意：如果通道不带缓冲，发送方会阻塞直到接收方从通道中接收了值。如果通道带缓冲，发送方则会阻塞直到发送的值被拷贝到缓冲区内；如果缓冲区已满，则意味着需要等待直到某个接收方获取到一个值。接收方在有值可以接收之前会一直阻塞。
 	*/
+
+	//以下实例通过两个 goroutine 来计算数字之和，在 goroutine 完成计算后，它会计算两个结果的和：
 	go sum(s[:len(s)/2], c)
 	go sum(s[len(s)/2:], c)
 	x, y := <-c, <-c       //从通道c中接收
-	fmt.Println(x, y, x+y) //结果与菜鸟go不符，菜鸟go是-5	17 	12
+	fmt.Println(x, y, x+y) //菜鸟go是-5	17 	12
 
 	//演示缓冲区
 	channel := make(chan int, 2)
