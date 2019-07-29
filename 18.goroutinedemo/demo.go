@@ -5,6 +5,13 @@ import (
 	"time"
 )
 
+//go 函数名( 参数列表 )
+// 例如：
+// go f(x, y, z)
+// import (
+// 	"fmt"
+// 	"time"
+// )
 func say(s string) {
 	for i := 0; i < 5; i++ {
 		time.Sleep(100 * time.Millisecond)
